@@ -11,8 +11,13 @@ import AddHotel from "./pages/AddHotel";
 import { useAppContext } from "./contexts/AppContext";
 import MyHotels from "./pages/MyHotels";
 import EditHotel from "./pages/EditHotel";
+import Search from "./pages/Search";
+import Detail from "./pages/Detail";
+import Booking from "./pages/Booking";
+import MyBookings from "./pages/MyBookings";
+import Home from "./pages/Home";
 
-function App() {
+const App = () => {
   const { isLoggedIn } = useAppContext();
   return (
     <Router>
@@ -20,18 +25,24 @@ function App() {
         <Route
           path="/"
           element={
-            <span className="text-4xl">
-              <Layout>
-                <p>Home page</p>
-              </Layout>
-            </span>
+            <Layout>
+              <Home />
+            </Layout>
           }
         />
         <Route
           path="/search"
           element={
             <Layout>
-              <p>search page</p>
+              <Search />
+            </Layout>
+          }
+        />
+        <Route
+          path="/detail/:hotelId"
+          element={
+            <Layout>
+              <Detail />
             </Layout>
           }
         />
@@ -51,13 +62,31 @@ function App() {
             </Layout>
           }
         />
+
         {isLoggedIn && (
           <>
+            <Route
+              path="/hotel/:hotelId/booking"
+              element={
+                <Layout>
+                  <Booking />
+                </Layout>
+              }
+            />
+
             <Route
               path="/add-hotel"
               element={
                 <Layout>
                   <AddHotel />
+                </Layout>
+              }
+            />
+            <Route
+              path="/edit-hotel/:hotelId"
+              element={
+                <Layout>
+                  <EditHotel />
                 </Layout>
               }
             />
@@ -70,19 +99,19 @@ function App() {
               }
             />
             <Route
-              path="/edit-hotel/:hotelId"
+              path="/my-bookings"
               element={
                 <Layout>
-                  <EditHotel />
+                  <MyBookings />
                 </Layout>
               }
             />
           </>
         )}
-        <Route path="*" element={<Navigate to={"/"} />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;

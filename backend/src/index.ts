@@ -5,10 +5,10 @@ import mongoose from "mongoose";
 import userRoutes from "./routes/users";
 import authRoutes from "./routes/auth";
 import myHotelRoutes from "./routes/my-hotels";
+import hotelRouter from "./routes/hotels";
 import cookiesParser from "cookie-parser";
 import path from "path";
 import { v2 as cloudinary } from "cloudinary";
-
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -31,7 +31,8 @@ app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/my-hotels", myHotelRoutes);
+app.use("/api/hotels",hotelRouter)
 
-app.listen(7002, () => {
-  console.log("server running on localhost:7002");
+app.listen(7001, () => {
+  console.log("server running on localhost:7001");
 });
