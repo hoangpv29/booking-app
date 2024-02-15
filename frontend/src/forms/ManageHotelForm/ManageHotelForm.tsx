@@ -13,13 +13,13 @@ export type HotelFormData = {
   country: string;
   description: string;
   type: string;
-  pricePerNight: string;
-  starRating: string[];
+  pricePerNight: number;
+  starRating: number;
+  facilities: string[];
   imageFiles: FileList;
   imageUrls: string[];
   adultCount: number;
   childCount: number;
-  facilities: string[];
 };
 
 type Props = {
